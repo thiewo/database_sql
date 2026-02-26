@@ -1,0 +1,65 @@
+INSERT INTO Client VALUES (5, 'Dumitru Cristian', 'Str. Pacii nr. 90, Brasov', '0765555555', 'cristian.dumitru@email.com', TO_DATE('2023-05-12', 'YYYY-MM-DD'));
+INSERT INTO Client VALUES (6, 'Stan Alexandra', 'Bd. Independentei nr. 23, Constanta', '0776666666', 'alexandra.stan@email.com', TO_DATE('2023-06-18', 'YYYY-MM-DD'));
+INSERT INTO Client VALUES (7, 'Marin Gabriel', 'Str. Unirii nr. 45, Sibiu', '0787777777', 'gabriel.marin@email.com', TO_DATE('2023-07-22', 'YYYY-MM-DD'));
+INSERT INTO Client VALUES (8, 'Constantinescu Ana', 'Calea Victoriei nr. 67, Oradea', '0798888888', 'ana.constantinescu@email.com', TO_DATE('2023-08-30', 'YYYY-MM-DD'));
+INSERT INTO Client VALUES (9, 'Radu Mihai', 'Str. Primaverii nr. 89, Bucuresti', '0721999999', 'mihai.radu@email.com', TO_DATE('2023-09-14', 'YYYY-MM-DD'));
+INSERT INTO Client VALUES (10, 'Vasile Ioana', 'Bd. Eroilor nr. 101, Cluj', '0732101010', 'ioana.vasile@email.com', TO_DATE('2023-10-25', 'YYYY-MM-DD'));
+INSERT INTO Client VALUES (11, 'Stoica Daniel', 'Str. Republicii nr. 13, Timisoara', '0743121212', 'daniel.stoica@email.com', TO_DATE('2023-11-08', 'YYYY-MM-DD'));
+INSERT INTO Client VALUES (12, 'Florea Carmen', 'Calea Moldovei nr. 27, Iasi', '0754131313', 'carmen.florea@email.com', TO_DATE('2023-12-03', 'YYYY-MM-DD'));
+
+--Angajat
+INSERT INTO Angajat VALUES (1, 'Ionescu Maria', 'Manager evenimente', 5000, TO_DATE('2020-01-10', 'YYYY-MM-DD'), 'maria.ionescu@company.com');
+INSERT INTO Angajat VALUES (2, 'Popescu Andrei', 'Coordinator logistica', 3500, TO_DATE('2020-03-15', 'YYYY-MM-DD'), 'andrei.popescu@company.com');
+INSERT INTO Angajat VALUES (3, 'Dumitrescu Elena', 'Designer evenimente', 4000, TO_DATE('2020-06-20', 'YYYY-MM-DD'), 'elena.dumitrescu@company.com');
+INSERT INTO Angajat VALUES (4, 'Vasilescu George', 'Asistent organizare', 2500, TO_DATE('2021-02-10', 'YYYY-MM-DD'), 'george.vasilescu@company.com');
+INSERT INTO Angajat VALUES (5, 'Marinescu Ana', 'Responsabil clienti', 3200, TO_DATE('2021-04-22', 'YYYY-MM-DD'), 'ana.marinescu@company.com');
+INSERT INTO Angajat VALUES (6, 'Stanciu Mihai', 'Tehnician audio-video', 3000, TO_DATE('2021-07-15', 'YYYY-MM-DD'), 'mihai.stanciu@company.com');
+INSERT INTO Angajat VALUES (7, 'Constantinescu Laura', 'Decorator', 2800, TO_DATE('2021-09-30', 'YYYY-MM-DD'), 'laura.constantinescu@company.com');
+INSERT INTO Angajat VALUES (8, 'Radu Cristian', 'Fotograf', 3500, TO_DATE('2022-01-12', 'YYYY-MM-DD'), 'cristian.radu@company.com');
+INSERT INTO Angajat VALUES (9, 'Popa Ioana', 'Coordonator catering', 2900, TO_DATE('2022-03-25', 'YYYY-MM-DD'), 'ioana.popa@company.com');
+INSERT INTO Angajat VALUES (10, 'Georgescu Daniel', 'Asistent tehnic', 2400, TO_DATE('2022-06-18', 'YYYY-MM-DD'), 'daniel.georgescu@company.com');
+INSERT INTO Angajat VALUES (11, 'Stoica Alexandra', 'Manager operatiuni', 4500, TO_DATE('2022-09-05', 'YYYY-MM-DD'), 'alexandra.stoica@company.com');
+INSERT INTO Angajat VALUES (12, 'Florea Gabriel', 'Specialist marketing', 3300, TO_DATE('2023-01-20', 'YYYY-MM-DD'), 'gabriel.florea@company.com');
+
+-- Eveniment
+INSERT INTO Eveniment VALUES (1, 'Nunta Popescu-Ionescu', 8, TO_DATE('2024-06-15', 'YYYY-MM-DD'), 1, 1, 15000);
+INSERT INTO Eveniment VALUES (2, 'Conferinta IT 2024', 5, TO_DATE('2024-09-20', 'YYYY-MM-DD'), 5, 3, 8000);
+INSERT INTO Eveniment VALUES (3, 'Petrecere corporate', 4, TO_DATE('2024-12-10', 'YYYY-MM-DD'), 7, 6, 12000);
+INSERT INTO Eveniment VALUES (4, 'Botez familia Georgescu', 6, TO_DATE('2024-05-25', 'YYYY-MM-DD'), 3, 2, 7000);
+INSERT INTO Eveniment VALUES (5, 'Aniversare 50 ani', 5, TO_DATE('2024-08-08', 'YYYY-MM-DD'), 6, 7, 6500);
+INSERT INTO Eveniment VALUES (6, 'Eveniment caritabil', 3, TO_DATE('2024-11-15', 'YYYY-MM-DD'), 8, 5, 5000);
+INSERT INTO Eveniment VALUES (7, 'Lansare produs', 4, TO_DATE('2024-07-22', 'YYYY-MM-DD'), 5, 11, 9000);
+INSERT INTO Eveniment VALUES (8, 'Nunta Stan-Marin', 10, TO_DATE('2024-10-05', 'YYYY-MM-DD'), 7, 1, 18000);
+INSERT INTO Eveniment VALUES (9, 'Petrecere copii', 3, TO_DATE('2024-04-30', 'YYYY-MM-DD'), 9, 9, 3500);
+INSERT INTO Eveniment VALUES (10, 'Gala de premiere', 6, TO_DATE('2024-12-20', 'YYYY-MM-DD'), 10, 12, 11000);
+INSERT INTO Eveniment VALUES (11, 'Team building', 4, TO_DATE('2025-03-15', 'YYYY-MM-DD'), 3, 8, 7500);
+INSERT INTO Eveniment VALUES (12, 'Cocktail party', 3, TO_DATE('2025-05-10', 'YYYY-MM-DD'), 6, 12, 5500);
+
+-- Eveniment_Client
+INSERT INTO Eveniment_Client VALUES (1, 1, 'Organizator principal');
+INSERT INTO Eveniment_Client VALUES (1, 2, 'Co-organizator');
+INSERT INTO Eveniment_Client VALUES (2, 3, 'Sponsor');
+INSERT INTO Eveniment_Client VALUES (3, 4, 'Organizator principal');
+INSERT INTO Eveniment_Client VALUES (4, 5, 'Organizator principal');
+INSERT INTO Eveniment_Client VALUES (5, 6, 'Organizator principal');
+INSERT INTO Eveniment_Client VALUES (6, 7, 'Organizator principal');
+INSERT INTO Eveniment_Client VALUES (7, 8, 'Organizator principal');
+INSERT INTO Eveniment_Client VALUES (8, 9, 'Organizator principal');
+INSERT INTO Eveniment_Client VALUES (8, 10, 'Co-organizator');
+INSERT INTO Eveniment_Client VALUES (9, 11, 'Organizator principal');
+INSERT INTO Eveniment_Client VALUES (10, 12, 'Organizator principal');
+
+--Eveniment_Angajat
+INSERT INTO Eveniment_Angajat VALUES (1, 1, 'Manager eveniment');
+INSERT INTO Eveniment_Angajat VALUES (1, 3, 'Designer');
+INSERT INTO Eveniment_Angajat VALUES (2, 2, 'Coordinator logistica');
+INSERT INTO Eveniment_Angajat VALUES (2, 6, 'Tehnician AV');
+INSERT INTO Eveniment_Angajat VALUES (3, 5, 'Responsabil clienti');
+INSERT INTO Eveniment_Angajat VALUES (4, 7, 'Decorator');
+INSERT INTO Eveniment_Angajat VALUES (5, 9, 'Coordonator catering');
+INSERT INTO Eveniment_Angajat VALUES (6, 11, 'Manager operatiuni');
+INSERT INTO Eveniment_Angajat VALUES (7, 12, 'Specialist marketing');
+INSERT INTO Eveniment_Angajat VALUES (8, 1, 'Manager eveniment');
+INSERT INTO Eveniment_Angajat VALUES (8, 8, 'Fotograf');
+INSERT INTO Eveniment_Angajat VALUES (9, 4, 'Asistent organizare');
+INSERT INTO Eveniment_Angajat VALUES (10, 10, 'Asistent tehnic');
