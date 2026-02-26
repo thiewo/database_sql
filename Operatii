@@ -1,0 +1,150 @@
+
+UPDATE Client 
+SET telefon_client = '0721111112' 
+WHERE id_client = 1;
+
+UPDATE Eveniment 
+SET pret_total = pret_total * 1.1 
+WHERE durata_eveniment > 5;
+
+UPDATE Angajat 
+SET salariu = salariu * 1.15 
+WHERE id_angajat IN (
+    SELECT id_angajat 
+    FROM Eveniment_Angajat 
+    GROUP BY id_angajat 
+    HAVING COUNT(*) >= 2
+);
+
+UPDATE Locatie l
+SET l.capacitate = l.capacitate + 20
+WHERE l.oras = 'Bucuresti';
+
+UPDATE Furnizor 
+SET tip_serviciu = 'Servicii multiple' 
+WHERE id_furnizor IN (1, 5, 10);
+
+CREATE TABLE Test_Backup AS SELECT * FROM Client;
+
+DROP TABLE Test_Backup;
+
+FLASHBACK TABLE Test_Backup TO BEFORE DROP;
+
+SELECT * FROM Test_Backup;
+
+DROP TABLE Test_Backup PURGE;
+
+SELECT * FROM Eveniment;
+
+SELECT denumire_eveniment, data_incepere, pret_total 
+FROM Eveniment 
+ORDER BY data_incepere DESC, pret_total DESC;
+
+
+SELECT e.denumire_eveniment, e.data_incepere, l.dimensiune_locatie, l.oras
+FROM Eveniment e
+INNER JOIN Locatie l ON e.id_locatie = l.id_locatie;
+
+
+SELECT c.nume_client, c.email, e.denumire_eveniment
+FROM Client c
+LEFT JOIN Eveniment_Client ec ON c.id_client = ec.id_client
+LEFT JOIN Eveniment e ON ec.id_eveniment = e.id_eveniment;
+
+
+SELECT e.denumire_eveniment, l.oras, f.nume_furnizor, f.tip_serviciu, e.pret_total
+FROM Eveniment e
+INNER JOIN Locatie l ON e.id_locatie = l.id_locatie
+LEFT JOIN Furnizor f ON e.id_furnizor = f.id_furnizor
+WHERE e.pret_total > 7000;
+
+SELECT 
+    COUNT(*) AS total_evenimente,
+    SUM(pret_total) AS venit_total,
+    AVG(pret_total) AS pret_mediu,
+    MIN(pret_total) AS pret_minim,
+    MAX(pret_total) AS pret_maxim
+FROM Eveniment;
+
+SELECT l.oras, COUNT(e.id_eveniment) AS numar_evenimente, AVG(e.pret_total) AS pret_mediu
+FROM Locatie l
+LEFT JOIN Eveniment e ON l.id_locatie = e.id_locatie
+GROUP BY l.oras
+HAVING COUNT(e.id_eveniment) >= 1
+ORDER BY numar_evenimente DESC;
+
+SELECT 
+    denumire_eveniment,
+    pret_total,
+    ROUND(pret_total * 1.19, 2) AS pret_cu_tva,
+    TRUNC(pret_total / 100) * 100 AS pret_rotunjit,
+    MOD(pret_total, 1000) AS rest_impartire,
+    POWER(durata_eveniment, 2) AS durata_la_patrat
+FROM Eveniment;
+
+SELECT 
+    denumire_eveniment, 
+    pret_total,
+    DECODE(
+        SIGN(pret_total - 10000),
+        1, 'Premium',
+        0, 'Standard',
+        -1, DECODE(
+            SIGN(pret_total - 5000),
+            1, 'Standard',
+            'Economic'
+        )
+    ) AS categorie_pret
+FROM Eveniment;
+
+SELECT id_furnizor AS id, nume_furnizor AS nume, 'Furnizor' AS tip, telefon AS contact
+FROM Furnizor
+UNION
+SELECT id_client, nume_client, 'Client', telefon_client
+FROM Client
+ORDER BY tip, nume;
+
+SELECT id_client, nume_client
+FROM Client
+MINUS
+SELECT c.id_client, c.nume_client
+FROM Client c
+INNER JOIN Eveniment_Client ec ON c.id_client = ec.id_client;
+
+SELECT denumire_eveniment, pret_total
+FROM Eveniment
+WHERE pret_total > (SELECT AVG(pret_total) FROM Eveniment)
+ORDER BY pret_total DESC;
+
+
+SELECT denumire_eveniment, pret_total
+FROM Eveniment
+WHERE pret_total > ALL (
+    SELECT pret_total
+    FROM Eveniment
+    WHERE pret_total < 6000
+);
+
+SELECT denumire_eveniment, pret_total
+FROM Eveniment
+WHERE pret_total > ANY (
+    SELECT pret_total
+    FROM Eveniment
+    WHERE pret_total < 7000
+)
+ORDER BY pret_total;
+
+SELECT * FROM (
+    SELECT denumire_eveniment, pret_total, data_incepere
+    FROM Eveniment
+    ORDER BY pret_total DESC
+)
+WHERE ROWNUM <= 5;
+
+
+CREATE SYNONYM Ev FOR Eveniment;
+
+CREATE SYNONYM Cl FOR Client;
+
+CREATE SYNONYM Ang FOR Angajat;
+
